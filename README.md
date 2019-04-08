@@ -1,8 +1,10 @@
-# Hello World with Spring Cloud Kubernetes
+# Deploy apps to Kubernetes with no YAML files 😱
 
-This project shows how to use
-[Spring Cloud Kubernetes](https://spring.io/projects/spring-cloud-kubernetes)
-to run Spring Boot apps in a Kubernetes cluster.
+Using [Cloud Native Buildpacks](https://buildpacks.io) and
+[Spring Boot Helm starter](https://github.com/alexandreroman/spring-boot-helm-starter)
+you can **deploy a Spring Boot app to Kubernetes with no Dockerfile and no YAML files!**
+
+<img src="https://i.imgur.com/gZN0r7r.gif"/>
 
 ## How to use it?
 
@@ -14,7 +16,7 @@ $ ./mvnw clean package
 Create a Docker image using [Cloud Native Buildpacks](https://buildpacks.io)
 (you don't need a Dockerfile!):
 ```bash
-$ pack build myrepo/hello-sck --publish
+$ pack build myrepo/noyaml --publish
 ```
 
 Make sure to install
@@ -23,18 +25,18 @@ to generate Kubernetes descriptors.
 
 Generate Kubernetes descriptors using Helm:
 ```bash
-$ helm create --starter=spring-boot hello-sck
+$ helm create --starter=spring-boot noyaml
 ```
 
-Edit generated file `hello-sck/values.yml` and set your Docker image:
+Edit generated file `noyaml/values.yml` and set your Docker image:
 ```yaml
 image:
-  repository: myrepo/hello-sck
+  repository: myrepo/noyaml
 ```
 
 You are now ready to deploy this app using Helm:
 ```bash
-$ helm install --namespace hello-sck hello-sck
+$ helm install --namespace noyaml noyaml
 ```
 
 ## Contribute
