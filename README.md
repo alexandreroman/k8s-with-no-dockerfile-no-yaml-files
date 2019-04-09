@@ -8,12 +8,8 @@ you can **deploy a Spring Boot app to Kubernetes with no Dockerfile and no YAML 
 
 ## How to use it?
 
-Compile this app using JDK 8:
-```bash
-$ ./mvnw clean package
-```
-
-Create a Docker image using [Cloud Native Buildpacks](https://buildpacks.io)
+Create and publish a Docker image using
+[Cloud Native Buildpacks](https://buildpacks.io)
 (you don't need a Dockerfile!):
 ```bash
 $ pack build myrepo/noyaml --publish
@@ -34,7 +30,8 @@ image:
   repository: myrepo/noyaml
 ```
 
-You are now ready to deploy this app using Helm:
+You are now ready to deploy this app using Helm
+(don't write YAML files to deploy an app to Kubernetes!):
 ```bash
 $ helm install --namespace noyaml noyaml
 ```
